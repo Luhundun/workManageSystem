@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lu.workManageSystem.mapper.StudentCourseMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lu.workManageSystem.pojo.StudentCourse">
+        <id column="id" property="id" />
+        <result column="sid" property="sid" />
+        <result column="cid" property="cid" />
+        <result column="grade" property="grade" />
+    </resultMap>
+
+<!--    <resultMap id="BaseResultMap" type="com.lu.workManageSystem.pojo.StudentCourse">-->
+<!--        <id column="id" property="id" />-->
+<!--        <result column="grade" property="grade" />-->
+<!--        <association property="sid" javaType="com.lu.workManageSystem.pojo.Student">-->
+<!--            <id column="sid" property="sid" />-->
+<!--            <result column="name" property="name" />-->
+<!--        </association>-->
+<!--        <association property="cid" javaType="com.lu.workManageSystem.pojo.Course">-->
+<!--            <id column="cid" property="cid" />-->
+<!--            <result column="name" property="name" />-->
+<!--        </association>-->
+<!--    </resultMap>-->
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, sid, cid, grade
+    </sql>
+
+</mapper>

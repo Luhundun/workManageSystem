@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>课程管理</title>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome5-overrides.min.css}">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav th:replace="~{commons/commons.html::teacherSidebar}"> </nav>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav th:replace="~{commons/commons.html::teacherTopbar}"> </nav>
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">课程管理</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">授课列表</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">当前页最大数目<select class="d-inline-block form-select form-select-sm">
+                                        <option value="10" selected>10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select></label></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="dataTable_filter" class="text-md-end dataTables_filter"><label class="form-label"><input class="form-control form-control-sm" type="search" aria-controls="dataTable" placeholder="Search" /></label></div>
+                                </div>
+                            </div>
+                            <div id="dataTable" class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
+                                <table id="dataTable" class="table my-0">
+                                    <thead>
+                                    <tr>
+                                        <th>课程名</th>
+                                        <th>课程号</th>
+                                        <th>授课教师</th>
+                                        <th>选课人数</th>
+                                        <th>学分</th>
+                                        <th>开始日期</th>
+                                        <th>操作</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="course:${courseList}">
+                                        <td th:text="${course.getName()}"></td>
+                                        <td th:text="${course.getCid()}"></td>
+                                        <td th:text="${session.teacher.getName()}"></td>
+                                        <td th:text="${course.getChooseSum()}"></td>
+                                        <td th:text="${course.getScore()}"></td>
+                                        <td>2021-09</td>
+<!--                                        <td th:text="${#dates.format(course.getBeginTime(),'yyyy/MM/dd')}"></td>-->
+                                        <td>
+                                            <a class='btn btn-sm btn-primary'
+                                               th:href="${'/teacher/course/'}+${course.cid}+${'/student'}">学生列表</a>
+                                            <a class='btn btn-sm btn-danger'
+                                               th:href="${'/teacher/course/'}+${course.cid}+${'/work'}">作业列表</a>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td><strong>课程名</strong></td>
+                                        <td><strong>课程号</strong></td>
+                                        <td><strong>授课教师</strong></td>
+                                        <td><strong>选课人数</strong></td>
+                                        <td><strong>开始日期</strong></td>
+                                        <td><strong>学分</strong></td>
+                                        <th>操作</th>
+
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script th:src="@{/js/bs-init.js}"></script>
+    <script th:src="@{/js/theme.js}"></script>
+</body>
+
+</html>

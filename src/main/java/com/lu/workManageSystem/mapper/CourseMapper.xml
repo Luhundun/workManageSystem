@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lu.workManageSystem.mapper.CourseMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lu.workManageSystem.pojo.Course">
+        <id column="cid" property="cid" />
+        <result column="name" property="name" />
+        <result column="tid" property="tid" />
+        <result column="info" property="info" />
+        <result column="learn_time" property="learnTime" />
+        <result column="score" property="score" />
+        <result column="begin_time" property="beginTime" />
+        <result column="end_time" property="endTime" />
+        <result column="choose_sum" property="chooseSum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cid, name, tid, info, learn_time, score, begin_time, end_time, choose_sum
+    </sql>
+
+</mapper>

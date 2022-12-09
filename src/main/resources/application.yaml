@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:mysql://rm-bp1n76xwt0nc2w0mipo.mysql.rds.aliyuncs.com:3306/web
+    password: cwebmima
+    username: cweb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 100MB
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: utf-8
+    mode: HTML
+    servlet:
+
+      content-type: text/html
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 30m
+
+ip: http://localhost:8088/files
+
